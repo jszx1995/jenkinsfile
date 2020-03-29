@@ -37,5 +37,14 @@ pipeline {
                 }
             }
         }
+        
+        stage("npmbuild"){
+            steps{
+                script{
+                    npmhome = tool "NPM"
+                    sh "${npmhome}/bin/npm -v"
+                }
+            }
+        }
     }
 }
