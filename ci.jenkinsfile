@@ -11,7 +11,8 @@ pipeline {
                 script{
                     mvnhome = tool "M2"
                     sh "${mvnhome}/bin/mvn -v}"
-                    println(${buildshell})
+                    println(buildshell)
+                    ${buildshell}
                 }
             }
         }
