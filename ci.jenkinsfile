@@ -19,8 +19,12 @@ pipeline {
         stage("antbuild"){
             steps{
                 script{
-                    anthome = tool "ANT"
-                    sh "${anthome}/bin/ant -v"
+                    try{
+                        anthome = tool "ANT"
+                        sh "${anthome}/bin/ant -v"
+                    } catch(e){
+                        println(e)
+                    }
                 }
             }
         }
