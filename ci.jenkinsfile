@@ -42,7 +42,7 @@ pipeline {
             steps{
                 script{
                     npmhome = tool "NPM"
-                    sh "${npmhome}/bin/npm -v"
+                    sh "export NODE_HOME=/usr/local/node-v12.16.1-linux-x64 && PATH=$PATH:${NODE_HOME}/bin && ${npmhome}/bin/npm -v"
                 }
             }
         }
