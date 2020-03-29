@@ -6,12 +6,21 @@ pipeline {
     agent { node { label "master"}}
     
     stages {
-        stage("build"){
+        stage("mvnbuild"){
             steps{
                 script{
                     mvnhome = tool "M2"
                     sh "${mvnhome}/bin/mvn -v}"
                     println(buildshell)
+                }
+            }
+        }
+        
+        stage("antbuild"){
+            steps{
+                script{
+                    anthome = tool "ANT"
+                    sh "${anthome}/bin/ant -v"
                 }
             }
         }
