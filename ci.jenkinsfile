@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('jenkinslib@master') _
+@Library('jenkinslibrary@master') _
 
 def build = new org.devops.build()
 
@@ -9,58 +9,4 @@ String buildType = "${env.buildType}"
 String buildshell = "${env.buildShell}"
 
 pipeline {
-    agent { node { label "master"}}
-    
-    /*stages {
-        stage("mvnbuild"){
-            steps{
-                script{
-                    mvnhome = tool "M2"
-                    sh "${mvnhome}/bin/mvn -v}"
-                    println(buildshell)
-                }
-            }
-        }
-        
-        stage("antbuild"){
-            steps{
-                script{
-                    try{
-                        anthome = tool "ANT"
-                        sh "${anthome}/bin/ant -v"
-                    } catch(e){
-                        println(e)
-                    }
-                }
-            }
-        }
-        
-        stage("gradlebuild"){
-            steps{
-                script{
-                    gradlehome = tool "GRADLE"
-                    sh "${gradlehome}/bin/gradle -v"
-                }
-            }
-        }
-        
-        stage("npmbuild"){
-            steps{
-                script{
-                    npmhome = tool "NPM"
-                    sh "export NODE_HOME=/usr/local/node-v12.16.1-linux-x64 && export PATH=\$PATH:\${NODE_HOME}/bin && ${npmhome}/bin/npm -v"
-                }
-            }
-        }
-    }*/
-    
-    stages{
-        stage("build"){
-            steps{
-                script{
-                    build.Build(buildType,buildShell)
-                }
-            }
-        }
-    }
-}
+    a
