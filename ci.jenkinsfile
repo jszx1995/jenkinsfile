@@ -4,7 +4,9 @@
 
 def build = new org.devops.build()
 
-String buildshell = "${env.buildshell}"
+String buildType = "${env.buildType}"
+
+String buildshell = "${env.buildShell}"
 
 pipeline {
     agent { node { label "master"}}
