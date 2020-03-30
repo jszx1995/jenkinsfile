@@ -9,7 +9,7 @@ String buildshell = "${env.buildshell}"
 pipeline {
     agent { node { label "master"}}
     
-    stages {
+    /*stages {
         stage("mvnbuild"){
             steps{
                 script{
@@ -47,6 +47,16 @@ pipeline {
                 script{
                     npmhome = tool "NPM"
                     sh "export NODE_HOME=/usr/local/node-v12.16.1-linux-x64 && export PATH=\$PATH:\${NODE_HOME}/bin && ${npmhome}/bin/npm -v"
+                }
+            }
+        }
+    }*/
+    
+    stages{
+        stage("build"){
+            steps{
+                script{
+                    build.Build(buildType,buildShell)
                 }
             }
         }
