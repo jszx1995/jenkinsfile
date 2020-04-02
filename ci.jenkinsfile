@@ -5,6 +5,8 @@
 def build = new org.devops.build()
 def deploy = new org.devops.deploy()
 
+String deployHost = "${env.deployHost}"
+
 String buildType = "${env.buildType}"
 
 String buildshell = "${env.buildShell}"
@@ -59,7 +61,7 @@ pipeline {
             steps{
                 script{
                     build.Build(buildType,buildShell)
-                    deploy.SaltDeploy("jenkins", "test.ping")
+                    deploy.SaltDeploy("${deployHost}", "test.ping")
                 }
             }
         }
