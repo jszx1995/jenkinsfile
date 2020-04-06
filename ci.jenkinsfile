@@ -11,8 +11,13 @@ String buildType = "${env.buildType}"
 
 String buildshell = "${env.buildShell}"
 
+String srcUrl = "${env.srcUrl}"
+
+String branchName = "${env.branchName}"
+
 pipeline {
     agent { node { label "master"}}
+    
     /*stages {
         stage("mvnbuild"){
             steps{
@@ -57,6 +62,14 @@ pipeline {
     }*/
     
     stages{
+        stage("Checkout"){
+            steps{
+                script{
+                    checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jszx1995', url: "${srcUrl}"]]])
+                }
+            }
+        }
+        
         stage("build"){
             steps{
                 script{
