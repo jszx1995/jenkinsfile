@@ -4,6 +4,7 @@
 
 def build = new org.devops.build()
 def deploy = new org.devops.deploy()
+def tools = new org.devops.tools()
 
 String deployHost = "${env.deployHost}"
 
@@ -65,6 +66,7 @@ pipeline {
         stage("Checkout"){
             steps{
                 script{
+                    tools.PrintMes("获取代码", "green")
                     checkout([$class: 'GitSCM', branches: [[name: "${branchName}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jszx1995', url: "${srcUrl}"]]])
                 }
             }
@@ -73,6 +75,7 @@ pipeline {
         stage("build"){
             steps{
                 script{
+                    tools.PrintMes("项目打包", "green")
                     build.Build(buildType,buildShell)
                     deploy.SaltDeploy("${deployHost}", "test.ping")
                     deploy.Ansible("${deployHost}", "-m ping")
